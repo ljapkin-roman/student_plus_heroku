@@ -1,4 +1,6 @@
 {
+  "description" : "one of many my pet project",
+  "name" : "roroma/student-of-php",
   "require" : {
     "silex/silex": "^2.0.4",
     "monolog/monolog": "^1.22",
@@ -6,6 +8,14 @@
     "symfony/twig-bridge": "^3"
   },
   "require-dev": {
-    "heroku/heroku-buildpack-php": "*"
+    "heroku/heroku-buildpack-php": "*",
+    "squizlabs/php_codesniffer": "3.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Summit\\": "src/"
+    },
+    "files": ["src/bootstrap.php"]
   }
+
 }
