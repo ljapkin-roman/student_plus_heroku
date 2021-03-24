@@ -8,7 +8,8 @@ use Summit\Core\Model;
 use Summit\Core\View;
 use Summit\Core\Controller;
 bootstrap();
-
+$dbports = parse_url(getenv('DATABASE_URL'));
+phpinfo();
 /*
 $app = new Silex\Application();
 $app['debug'] = true;
