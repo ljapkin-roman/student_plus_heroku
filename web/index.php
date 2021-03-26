@@ -6,9 +6,23 @@ use function  Summit\bootstrap;
 use Summit\Core\Route;
 use Summit\Core\Model;
 use Summit\Core\View;
-use Summit\Core\Controller;
-bootstrap();
+use Summit\Core\Controll;
+phpinfo();
 
+$dsn = "pgsql:host=ec2-23-21-229-200.compute-1.amazonaws.com;dbname=d1t1cfll04msd3;user=ojgnelfnhcyyly;password=66e87004ba3afdba0d431151c529c0b1b3ee9c06c1a975b57bdc1c2372a2076a";
+$conn = new PDO($dsn);
+try{
+    // create a PostgreSQL database connection
+    $conn = new PDO($dsn);
+
+    // display a message if connected to the PostgreSQL successfully
+    if($conn){
+        echo "Connected to the <strong>$db</strong> database successfully!";
+    }
+}catch (PDOException $e){
+    // report error message
+    echo $e->getMessage();
+}
 /*
 $app = new Silex\Application();
 $app['debug'] = true;
