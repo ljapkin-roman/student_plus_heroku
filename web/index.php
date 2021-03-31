@@ -15,7 +15,9 @@ try{
 
     // display a message if connected to the PostgreSQL successfully
     if($conn){
-        echo "Connected to the <strong>$db</strong> database successfully!";
+        $test = $conn->exec("CREATE TABLE PERSONS (PersonID int, LastName varchar(255))");
+        print_r($test);
+
     }
 }catch (PDOException $e){
     // report error message
