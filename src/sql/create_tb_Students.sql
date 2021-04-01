@@ -1,6 +1,6 @@
 CREATE TYPE sex AS ENUM ('male', 'female');
 CREATE table Students (
-    id int not null PRIMARY KEY,
+    id SERIAL  PRIMARY KEY,
     firstname varchar(255) not null,
     lastname varchar(255) not null,
     email varchar(255),
