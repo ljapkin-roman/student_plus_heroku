@@ -8,7 +8,6 @@ class Route
        $action_name = 'index';
 
        $routes = explode('/', $_SERVER['REQUEST_URI']);
-
        if ( !empty($routes[1]) )
        {
            $controller_name = $routes[1];
@@ -20,9 +19,11 @@ class Route
            $action_name = $routes[2];
        }
 
+
        $model_name = 'Model_'.$controller_name;
        $controller_name = 'Controller_'.$controller_name;
        $action = 'action_'.$action_name;
+
 
        $source = '\\Summit\\';
        $path_to_controller = "Controllers\\".$controller_name;
@@ -55,4 +56,6 @@ class Route
        header("Status: 404 Not Found");
        header('Location:'.$host.'404');
    }
-}
+
+
+   }

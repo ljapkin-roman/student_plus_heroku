@@ -1,0 +1,14 @@
+{
+  "name": "Core",
+  "version": "1.0.0",
+  "dependencies": {
+  },
+  "db":
+  {
+    "host": "ec2-23-21-229-200.compute-1.amazonaws.com",
+    "user": "ojgnelfnhcyyly",
+    "password": "66e87004ba3afdba0d431151c529c0b1b3ee9c06c1a975b57bdc1c2372a2076a",
+    "dbname": "d1t1cfll04msd3",
+    "charset": "utf8"
+  }
+}
