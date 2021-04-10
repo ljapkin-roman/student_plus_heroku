@@ -8,12 +8,9 @@ class Model_Student extends Model
     {
 
         try {
-            //$sql = 'INSERT INTO student (first_name, last_name, number_group, gender, email, score_ege, birthday, citizen) VALUES (:first_name, :last_name, :number_group, :sex, :email, :score_ege, :birthday, :citizen)';
-            $sql = "INSERT INTO students (first_name, last_name, number_group, gender, email, score_ege, birthday, citizen) VALUES ('hachik', 'tortuga', 'ht78', 'male', 'hachik@gmail.com', 200, '1980-02-02', 'local')";
-            $select_sql = "SELCT * FROM stud";
-            $statement = $this->db->prepare($select_sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+            $sql = 'INSERT INTO students (first_name, last_name, number_group, gender, email, score_ege, birthday, citizen) VALUES (:first_name, :last_name, :number_group, :sex, :email, :score_ege, :birthday, :citizen)';
+            $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $statement->execute(
-            /*
             array(':first_name' => $data['first_name'],
                 ':last_name' => $data['last_name'],
                 ':sex' => $data['sex'],
@@ -23,10 +20,9 @@ class Model_Student extends Model
                 ':birthday' => $data['birthday'],
                 ':citizen' => $data['citizen']
 
-            )*/
+            )
             );
-            print_r("block try executed ");
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             //Do your error handling here
             $message = $e->getMessage();
             print_r($message);

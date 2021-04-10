@@ -5,7 +5,6 @@ if (!empty($data['errors'])) {
     $errors = $data['errors'];
     $data = $data['data'];
 }
-print_r($_COOKIE);
 ?>
 <form action="/registration/validate" method="post">
     <p>
@@ -122,10 +121,10 @@ print_r($_COOKIE);
 
     <p>
         <label for="citizen"> Житель города </label>
-        <input id="citizen" name="citizen" value="citizen" type="radio" checked>
+        <input id="citizen" name="citizen" value="local" type="radio" checked>
 
         <label for="citizen"> Иногородний </label>
-        <input id="citizen" name="citizen" value="no-citizen" type="radio">
+        <input id="citizen" name="citizen" value="no local" type="radio">
 
         <?php
         if (isset($errors['citizen'])) {

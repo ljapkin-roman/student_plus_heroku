@@ -3,6 +3,7 @@ namespace Summit\Controllers;
 use Summit\Core\Controller;
 use Summit\Models\Model_Student;
 use Summit\Validators\Validator_Student;
+use Summit\Controllers\Controller_Main;
 
 class Controller_Registration extends Controller
 {
@@ -20,9 +21,17 @@ class Controller_Registration extends Controller
         } else {
             $db = new Model_Student();
             $db->recordUser($result['data']);
+
             session_start();
             setcookie('user_email', $result['data']['email'], time()+60*60*24*30, '/');
+            $this->redirect();
         }
 
+    }
+
+    function redirect()
+    {
+        header('HTTP/1.1 301 Moved Permanently');
+        header('Location: http://'.$_SERVER['HTTP_HOST'].'/');
     }
 }

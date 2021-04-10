@@ -38,7 +38,7 @@ class Validator_Student extends Validator
         $toCheck->execute(array(':email' => $email));
         $result = $toCheck->fetchAll();
         if (!empty($result)) {
-            $this->errorData['email'] = "Выберите другой емайл";
+            $this->errorData['email'] = "Такой емайл уже существует.Выберите другой емайл";
         }
     }
 
@@ -87,6 +87,9 @@ class Validator_Student extends Validator
         if (!checkdate($date[1], $date[2], $date[0])) {
             $this->errorData['birthday'] = "Введите дату корректно";
         }
+        if ($date[0] < 1910) {
+            $this->errorData['birthday'] = "Ваш возраст слишком велик.";
+        }
     }
 
 
@@ -95,7 +98,7 @@ class Validator_Student extends Validator
             $this->errorData['citizen'] = "Выберите где проживаете";
         }
 
-        if ($citizen !== 'citizen' && $citizen !== 'no-citizen') {
+        if ($citizen !== 'local' && $citizen !== 'no local') {
             $this->errorData['citizen'] = "Можно выбрать только из двух значений - житель города или иногородний";
         }
     }
