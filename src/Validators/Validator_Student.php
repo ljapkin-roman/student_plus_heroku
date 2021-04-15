@@ -69,11 +69,11 @@ class Validator_Student extends Validator
 
     private function validScore($score) {
         if (!isset($score)) {
-            $this->errorData['score'] = "Введите баллы ЕГЭ!";
+            $this->errorData['score_ege'] = "Введите баллы ЕГЭ!";
         }
 
         if ($score < 90) {
-            $this->errorData['score'] = "Балл слишком мал. Попробуйте на следуйщий год";
+            $this->errorData['score_ege'] = "Балл слишком мал. Попробуйте на следуйщий год";
         }
     }
 

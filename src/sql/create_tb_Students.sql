@@ -11,5 +11,5 @@ CREATE table Students (
     CHECK (score_ege BETWEEN 30 and 400),
     birthday  DATE  not null CHECK (birthday > '1910-01-01'),
     citizen place_living not null,
-    session_id varchar(255) not null
+    session_id varchar(255) not null UNIQUE
 );

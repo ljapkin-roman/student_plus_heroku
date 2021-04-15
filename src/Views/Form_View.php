@@ -1,10 +1,13 @@
 <h3> Form for registr </h3>
 <?php
 session_start();
-if (!empty($data['errors'])) {
+if(isset($data['errors'])) {
     $errors = $data['errors'];
+}
+if(isset($data['data'])) {
     $data = $data['data'];
 }
+
 ?>
 <form action="/registration/validate" method="post">
     <p>
@@ -90,14 +93,14 @@ if (!empty($data['errors'])) {
         <label for="score"> Ball EGE: </label>
         <input type='number' name="score" id="score" min="100" max="277"
 
-            <?php if(isset($data['score']))
-                print_r("value={$data['score']}");
+            <?php if(isset($data['score_ege']))
+                print_r("value={$data['score_ege']}");
             ?>
                required>
 
         <?php
-        if (isset($errors['score'])) {
-            print_r("<p> {$errors['score']} </p>");
+        if (isset($errors['score_ege'])) {
+            print_r("<p> {$errors['score_ege']} </p>");
         }
         ?>
     </p>
