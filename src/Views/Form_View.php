@@ -1,4 +1,4 @@
-<h3> Form for registr </h3>
+<h3> Form for register </h3>
 <?php
 session_start();
 if(isset($data['errors'])) {
@@ -137,3 +137,6 @@ if(isset($data['data'])) {
     </p>
     <input type='submit' value='Submit'>
 </form>
+<?php
+print_r($_COOKIE);
+?>

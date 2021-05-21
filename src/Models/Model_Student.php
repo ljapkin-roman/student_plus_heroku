@@ -6,9 +6,9 @@ class Model_Student extends Model
 {
     public function recordUser($data)
     {
-
         try {
-            $sql = 'INSERT INTO students (first_name, last_name, number_group, gender, email, score_ege, birthday, citizen, session_id) VALUES (:first_name, :last_name, :number_group, :sex, :email, :score_ege, :birthday, :citizen,:session_id)';
+            $sql = 'INSERT INTO students (first_name, last_name, number_group, gender, email, score_ege, birthday, citizen, cookie_user) 
+                    VALUES (:first_name, :last_name, :number_group, :sex, :email, :score_ege, :birthday, :citizen,:cookie_user)';
             $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
             $statement->execute(
             array(':first_name' => $data['first_name'],
@@ -19,7 +19,7 @@ class Model_Student extends Model
                 ':score_ege' => $data['score'],
                 ':birthday' => $data['birthday'],
                 ':citizen' => $data['citizen'],
-                ':session_id' => $data['session_id']
+                ':cookie_user' => $data['cookie_user']
 
             )
             );
@@ -30,18 +30,25 @@ class Model_Student extends Model
         }
     }
 
-    public function getAllUser(): bool
+    public function getAllUser()
     {
-        $sql = 'SELECT first_name, last_name, number_group, sex, email, score_ege, birthday, citizen FROM student';
-        $allUser = $this->db->query($sql);
-        return $allUser;
+        $sql = 'SELECT first_name, last_name, number_group, gender, email, score_ege, birthday, citizen FROM students;';
+        $statement = $this->db->prepare($sql, array(\PDO::FETCH_ASSOC,\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+        $statement->execute();
+        return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public  function sliceList($sizeChunk=30)
+    {
+        $enterList = $this->getAllUser();
+        $resultDivide = array_chunk($enterList,$sizeChunk);
+        return count($resultDivide);
+    }
     public function is_session_exist($session_id)  :bool
     {
-        $sql = 'SELECT session_id FROM Students WHERE session_id = :session_id';
+        $sql = 'SELECT cookie_user FROM Students WHERE cookie_user = :cookie_user';
         $toCheck = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-        $toCheck->execute(array(':session_id' => $session_id));
+        $toCheck->execute(array(':cookie_user' => $session_id));
         $result = $toCheck->fetchAll();
         if (!empty($result)) {
             return true;
@@ -56,10 +63,19 @@ class Model_Student extends Model
 
      public function get_data_student($session_id) :array
      {
-         $sql = 'SELECT * FROM Students WHERE session_id = :session_id';
+         $sql = 'SELECT * FROM Students WHERE cookie_user = :cookie_user';
          $toCheck = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
-         $toCheck->execute(array(':session_id' => $session_id));
+         $toCheck->execute(array(':cookie_user' => $session_id));
          $result = $toCheck->fetchAll();
          return $result;
+     }
+
+     public function getQuantityPage($pageSize):float
+     {
+         $sql = 'SELECT COUNT(*) FROM Students';
+         $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
+         $statement->execute();
+         $quantityPage = $statement->fetchAll()[0]['count'];
+         return round($quantityPage/$pageSize);
      }
 }

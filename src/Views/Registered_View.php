@@ -1,2 +1,2 @@
 <?php
-print_r("Sup, now we know you");
+print_r($_POST);

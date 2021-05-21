@@ -6,6 +6,7 @@ class Route
    {
        $controller_name = 'Main';
        $action_name = 'index';
+       $argument_name = '';
 
        $routes = explode('/', $_SERVER['REQUEST_URI']);
        if ( !empty($routes[1]) )
@@ -19,6 +20,11 @@ class Route
            $action_name = $routes[2];
        }
 
+       if ( !empty($routes[3]) )
+       {
+           $argument_name = $routes[3];
+       }
+
 
        $model_name = 'Model_'.$controller_name;
        $controller_name = 'Controller_'.$controller_name;
@@ -30,22 +36,24 @@ class Route
        $path_to_model = "Models\\".$model_name;
        $class_controller =  $source . $path_to_controller;
        $class_model = $source . $path_to_model;
-       $contr;
+       $controller;
        if(class_exists($class_controller))
        {
-           $contr = new $class_controller;
+           $controller = new $class_controller();
        }
        else 
        {
            Route::ErrorPage404();
        }
-       if (method_exists($class_controller, $action))
+       if (method_exists($controller, $action))
        {
-           $contr->$action();
+           $controller->$action($argument_name);
        }
        else
        {
-           Route::ErrorPage404();
+           print_r("Error, this class is not exist " . $class_controller);
+           print_r("Error, this method is not exist " . $action);
+           //Route::ErrorPage404();
        }
    }
 
