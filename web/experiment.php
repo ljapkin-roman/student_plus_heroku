@@ -2,7 +2,11 @@
 require '../vendor/autoload.php';
 ini_set('display_errors', 1);
 use Summit\Core\Experiment;
+use Summit\Core\View;
+use Summit\Controllers\Controller_Main;
+use Summit\Core\Controller;
 
-$crisp = new Experiment('jorney is overprice');
-$crisp->showProperty();
+$list = new Controller_Main();
+$list->view->pissoff();
+
 
