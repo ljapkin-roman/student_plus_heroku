@@ -7,6 +7,12 @@ use Summit\Controllers\Controller_Main;
 
 class Controller_Registration extends Controller
 {
+    public object $model_student;
+    function __construct()
+    {
+        $this->model_student = new Model_Student();
+    }
+
     function action_index($data = null, $query = null)
     {
         $model_student = new Model_Student();
@@ -54,7 +60,8 @@ class Controller_Registration extends Controller
     {
         $this->model_student->redact_student($session_id);
         $data['data'] = $this->model_student->get_data_student($session_id)[0];
-        $this->view->generate('Form_View.php', 'Template_View.php', $data);
+        //$this->view->generate('Form_View.php', 'Template_View.php', $data);
+        $this->view->generate('Form_View.php', 'Template_View.php', $data="opa");
     }
 
     function redirect()

@@ -7,4 +7,5 @@ class Controller_Registered extends Controller
     {
         $this->view->generate('Registered_View.php', 'Template_View.php');
     }
+
 }
