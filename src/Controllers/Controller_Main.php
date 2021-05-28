@@ -1,6 +1,9 @@
 <?php
+
 namespace Summit\Controllers;
+
 use Summit\Core\Controller;
+
 class Controller_Main extends Controller
 {
     function __construct()

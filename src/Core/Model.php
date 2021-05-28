@@ -1,7 +1,8 @@
 <?php
+
 namespace Summit\Core;
 
-class   Model
+class Model
 {
     public $db;
 

@@ -1,6 +1,9 @@
 <?php
+
 namespace Summit\Controllers;
+
 use Summit\Core\Controller;
+
 class Controller_Form extends Controller
 {
     function action_index()

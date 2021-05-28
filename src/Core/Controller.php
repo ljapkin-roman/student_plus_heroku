@@ -1,5 +1,7 @@
 <?php
+
 namespace Summit\Core;
+
 use Summit\Core\View;
 
 class Controller

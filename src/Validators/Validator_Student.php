@@ -1,4 +1,5 @@
 <?php
+
 namespace Summit\Validators;
 
 use Summit\Core\Validator as Validator;
@@ -24,11 +25,11 @@ class Validator_Student extends Validator
 
     private function validEmail($email)
     {
-        if ( !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->errorData['email'] = "Адресс почты не валиден!";
         }
 
-        if (strlen($email) > 200 ) {
+        if (strlen($email) > 200) {
             $this->errorData['email'] = "Название почты имеет больше 200 знаков!";
         }
 
@@ -42,7 +43,8 @@ class Validator_Student extends Validator
         }
     }
 
-    private function validSex($sex) {
+    private function validSex($sex)
+    {
         if (!isset($sex)) {
             $this->errorData['sex'] = "Пол должен быть выбран!";
         }
@@ -52,7 +54,8 @@ class Validator_Student extends Validator
         }
     }
 
-    private function validNumberGroup($number) {
+    private function validNumberGroup($number)
+    {
         if (!isset($number)) {
             $this->errorData['number_group'] = "Введите номер группы!";
         }
@@ -67,7 +70,8 @@ class Validator_Student extends Validator
     }
 
 
-    private function validScore($score) {
+    private function validScore($score)
+    {
         if (!isset($score)) {
             $this->errorData['score_ege'] = "Введите баллы ЕГЭ!";
         }
@@ -78,7 +82,8 @@ class Validator_Student extends Validator
     }
 
 
-    private function validDate($birthday) {
+    private function validDate($birthday)
+    {
         if (!isset($birthday)) {
             $this->errorData['birthday'] = "Выберите дату рождения";
         }
@@ -93,7 +98,8 @@ class Validator_Student extends Validator
     }
 
 
-    private function validCitizen($citizen) {
+    private function validCitizen($citizen)
+    {
         if (!isset($citizen)) {
             $this->errorData['citizen'] = "Выберите где проживаете";
         }
@@ -103,7 +109,7 @@ class Validator_Student extends Validator
         }
     }
 
-    public function action_validate (): array
+    public function action_validate(): array
     {
         $data = $_POST;
         $this->validFirstName($data['first_name']);
@@ -117,6 +123,5 @@ class Validator_Student extends Validator
         $output['data'] = $data;
         $output['errors'] = $this->errorData;
         return $output;
-
     }
 }

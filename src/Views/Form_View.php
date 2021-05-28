@@ -1,10 +1,10 @@
 <h3> Form for register </h3>
 <?php
 session_start();
-if(isset($data['errors'])) {
+if (isset($data['errors'])) {
     $errors = $data['errors'];
 }
-if(isset($data['data'])) {
+if (isset($data['data'])) {
     $data = $data['data'];
 }
 
@@ -13,8 +13,9 @@ if(isset($data['data'])) {
     <p>
         <label for="first_name"> First name: </label>
         <input id="first_name" type='text' name="first_name"
-            <?php if(isset($data['first_name']))
+            <?php if (isset($data['first_name'])) {
                 print_r("value={$data['first_name']}");
+            }
             ?>
                required>
     </p>
@@ -28,8 +29,9 @@ if(isset($data['data'])) {
         <label for="last_name"> Last name: </label>
         <input id="last_name" type='text' name="last_name"
 
-            <?php if(isset($data['last_name']))
+            <?php if (isset($data['last_name'])) {
                 print_r("value={$data['last_name']}");
+            }
             ?>
                required>
 
@@ -45,8 +47,9 @@ if(isset($data['data'])) {
         <label for="number_group"> Number group: </label>
         <input id="number_group" type='text' name="number_group"
 
-            <?php if(isset($data['number_group']))
+            <?php if (isset($data['number_group'])) {
                 print_r("value={$data['number_group']}");
+            }
             ?>
 
                required>
@@ -76,8 +79,9 @@ if(isset($data['data'])) {
         <label for="email"> Email: </label>
         <input type='email' name="email" id="email"
 
-            <?php if(isset($data['email']))
+            <?php if (isset($data['email'])) {
                 print_r("value={$data['email']}");
+            }
             ?>
 
                required>
@@ -93,8 +97,9 @@ if(isset($data['data'])) {
         <label for="score"> Ball EGE: </label>
         <input type='number' name="score" id="score" min="100" max="277"
 
-            <?php if(isset($data['score_ege']))
+            <?php if (isset($data['score_ege'])) {
                 print_r("value={$data['score_ege']}");
+            }
             ?>
                required>
 
@@ -109,8 +114,9 @@ if(isset($data['data'])) {
         <label for="birthday"> Birthday </label>
         <input type="date" id="birthday" name="birthday"
 
-            <?php if(isset($data['birthday']))
+            <?php if (isset($data['birthday'])) {
                 print_r("value={$data['birthday']}");
+            }
             ?>
                required>
 

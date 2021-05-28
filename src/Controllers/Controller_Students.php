@@ -1,4 +1,5 @@
 <?php
+
 namespace Summit\Controllers;
 
 class Controller_Students
