@@ -83,7 +83,7 @@ class Model_Student extends Model
 
     public function getListStudent($offset, $blockend = 30): array
     {
-        $sql = 'SELECT first_name, last_name, number_group FROM students OFFSET :offset LIMIT :limit;';
+        $sql = 'SELECT id, first_name, last_name, number_group FROM students OFFSET :offset LIMIT :limit;';
         $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $statement->execute(array(':offset' => $offset, ':limit' => $blockend));
         return $statement->fetchAll();

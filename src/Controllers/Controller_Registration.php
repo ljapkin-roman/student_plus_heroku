@@ -12,6 +12,7 @@ class Controller_Registration extends Controller
     public object $model_student;
     function __construct()
     {
+        parent::__construct();
         $this->model_student = new Model_Student();
     }
 
