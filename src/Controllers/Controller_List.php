@@ -4,12 +4,14 @@ namespace Summit\Controllers;
 
 use Summit\Core\Controller;
 use Summit\Models\Model_Student;
+use Summit\Core\Circumstance;
 
 class Controller_List extends Controller
 {
     public object $student;
     public float $amountPage;
     public float $studentOnPage = 30;
+    public  string $linkToPage;
     function __construct()
     {
         parent::__construct();
@@ -19,10 +21,8 @@ class Controller_List extends Controller
 
     function action_index()
     {
-        $data = $this->student->getAllUser();
         $routes = explode('/', $_SERVER['REQUEST_URI']);
-        print_r($data);
-         //$this->view->generate('List_View.php', 'Template_View.php', $data);
+        $this->view->generate('MetaList_View.php', 'Template_View.php');
     }
 
     function action_students($argument)
@@ -36,8 +36,8 @@ class Controller_List extends Controller
             $data['offset'] = $offset;
             $this->view->generate('List_View.php', 'Template_View.php', $data);
         } else {
-            $data = "pook";
-            print_r('check out is passed');
+            $linkToPage = 'http://' . Circumstance::getHostName() . Circumstance::getRequestUri() . 'page1';
+            header("Location:{$linkToPage}");
             //$this->view->generate('List_View.php', 'Template_View.php', $data);
         }
     }
