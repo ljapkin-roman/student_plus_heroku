@@ -36,7 +36,7 @@ $list_student = $data['listStudent'];
     <div class="input-group">
         <form action="/list/search" method="get" class="menu__search active" data-pjax-state="submit">
             <button type="submit" class="button-search">
-
+                   Button submit
             </button>
             <input type="text" name="student" placeholder="Поиск">
             <div class="button-close">
