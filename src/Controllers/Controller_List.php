@@ -28,12 +28,17 @@ class Controller_List extends Controller
     function action_students($argument)
     {
         $model_student = new Model_Student();
+        $url = Circumstance::getHostName() . Circumstance::getRequestUri();
         if (!empty($argument)) {
-            $numberPage = $this->getNumberPage($argument) - 1;
+            $url_component = parse_url($url);
+            print_r($url_component);
+            $numberPage = $this->getPageNumber($url) - 1;
             $offset = $numberPage * $this->studentOnPage;
             $data['quantityPage'] = $this->amountPage;
             $data['listStudent'] = $this->student->getListStudent($offset);
             $data['offset'] = $offset;
+            print_r($url);
+
             $this->view->generate('List_View.php', 'Template_View.php', $data);
         } else {
             $linkToPage = 'http://' . Circumstance::getHostName() . Circumstance::getRequestUri() . 'page1';
@@ -41,11 +46,33 @@ class Controller_List extends Controller
             //$this->view->generate('List_View.php', 'Template_View.php', $data);
         }
     }
-
-
-
-    function getNumberPage($argument): int
+    function action_search()
     {
-        return explode('page', $argument)[1];
+        $url = Circumstance::getHostName() . Circumstance::getRequestUri();
+        $data = $this->getParamSearch($url);
+        $this->view->generate('ResultSearch_View.php', 'Template_View.php', $data);
+    }
+
+
+
+    function getPageNumber($url):int
+    {
+        $path = parse_url($url)['path'];
+        $path_component = explode('/', $path);
+        $page = array_slice($path_component, 3, 1)[0];
+        $numberPage = explode('page', $page);
+        return $numberPage[1];
+
+    }
+    function getParamSearch($url) :?string
+    {
+      $url_component = parse_url($url);
+      if(isset($url_component['query']))
+      {
+          return $url_component['query'];
+      }
+      else {
+          return null;
+      }
     }
 }

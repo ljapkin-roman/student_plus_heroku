@@ -33,6 +33,18 @@ $list_student = $data['listStudent'];
         <?php } ?>
 
     </ul>
+    <div class="input-group">
+        <form action="/list/search" method="get" class="menu__search active" data-pjax-state="submit">
+            <button type="submit" class="button-search">
+
+            </button>
+            <input type="text" name="student" placeholder="Поиск">
+            <div class="button-close">
+                <svg class="icon icon-close" xmlns="http://www.w3.org/2000/svg"><use xlink:href="#close-button"></use></svg>
+            </div>
+        </form>
+
+    </div>
 </nav>
 <table class="table">
     <thead>

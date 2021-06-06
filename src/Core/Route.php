@@ -10,7 +10,9 @@ class Route
         $action_name = 'index';
         $argument_name = '';
 
-        $routes = explode('/', $_SERVER['REQUEST_URI']);
+        $url_components = parse_url($_SERVER['REQUEST_URI']);
+
+        $routes = explode('/', $url_components['path']);
         if (!empty($routes[1])) {
             $controller_name = $routes[1];
             $controller_name = ucfirst($controller_name);
