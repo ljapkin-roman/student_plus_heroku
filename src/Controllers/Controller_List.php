@@ -49,7 +49,8 @@ class Controller_List extends Controller
     function action_search()
     {
         $url = Circumstance::getHostName() . Circumstance::getRequestUri();
-        $data = $this->getParamSearch($url);
+        $searchName = $this->getParamSearch($url);
+        $data = $this->student->searchName($searchName);
         $this->view->generate('ResultSearch_View.php', 'Template_View.php', $data);
     }
 
@@ -69,7 +70,8 @@ class Controller_List extends Controller
       $url_component = parse_url($url);
       if(isset($url_component['query']))
       {
-          return $url_component['query'];
+          $searchWord = explode('=', $url_component['query'])[1];
+          return $searchWord;
       }
       else {
           return null;
