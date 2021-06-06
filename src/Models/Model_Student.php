@@ -83,7 +83,7 @@ class Model_Student extends Model
 
     public function getListStudent($offset, $blockend = 30): array
     {
-        $sql = 'SELECT id, first_name, last_name, number_group FROM students OFFSET :offset LIMIT :limit;';
+        $sql = 'SELECT id, first_name, last_name, number_group, score_ege FROM students OFFSET :offset LIMIT :limit;';
         $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $statement->execute(array(':offset' => $offset, ':limit' => $blockend));
         return $statement->fetchAll();
@@ -91,7 +91,7 @@ class Model_Student extends Model
 
     public function searchName($name) :array
     {
-        $sql = "SELECT id, first_name, last_name, number_group FROM students WHERE first_name ILIKE :name OR last_name ILIKE :name";
+        $sql = "SELECT id, first_name, last_name, number_group, score_ege FROM students WHERE first_name ILIKE :name OR last_name ILIKE :name";
         $statement = $this->db->prepare($sql, array(\PDO::ATTR_CURSOR => \PDO::CURSOR_FWDONLY));
         $statement->execute(array(':name' => $name . '%'));
         return $statement->fetchAll();

@@ -53,6 +53,7 @@ $list_student = $data['listStudent'];
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Name group</th>
+        <th scope="col">Score EGE</th>
     </tr>
     </thead>
     <tbody>
@@ -62,6 +63,8 @@ $list_student = $data['listStudent'];
                 <td> <?php print_r($list_student[$i]['first_name']); ?> </td>
                 <td> <?php print_r($list_student[$i]['last_name']); ?> </td>
                 <td> <?php print_r($list_student[$i]['number_group']); ?> </td>
+                <td> <?php print_r($list_student[$i]['score_ege']); ?> </td>
+
 
         </tr>
         <?php } ?>
