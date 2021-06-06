@@ -31,13 +31,11 @@ class Controller_List extends Controller
         $url = Circumstance::getHostName() . Circumstance::getRequestUri();
         if (!empty($argument)) {
             $url_component = parse_url($url);
-            print_r($url_component);
             $numberPage = $this->getPageNumber($url) - 1;
             $offset = $numberPage * $this->studentOnPage;
             $data['quantityPage'] = $this->amountPage;
             $data['listStudent'] = $this->student->getListStudent($offset);
             $data['offset'] = $offset;
-            print_r($url);
 
             $this->view->generate('List_View.php', 'Template_View.php', $data);
         } else {
@@ -50,8 +48,8 @@ class Controller_List extends Controller
     {
         $url = Circumstance::getHostName() . Circumstance::getRequestUri();
         $searchName = $this->getParamSearch($url);
-        $data = $this->student->searchName($searchName);
-        $this->view->generate('ResultSearch_View.php', 'Template_View.php', $data);
+        $data['listStudent'] = $this->student->searchName($searchName);
+        $this->view->generate('List_View.php', 'Template_View.php', $data);
     }
 
 
