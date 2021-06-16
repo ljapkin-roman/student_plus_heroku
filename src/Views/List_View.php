@@ -53,7 +53,7 @@ $list_student = $data['listStudent'];
         <th scope="col">First Name</th>
         <th scope="col">Last Name</th>
         <th scope="col">Name group</th>
-        <th scope="col">Score EGE</th>
+        <th scope="col" class="score_ege">Score EGE</th>
     </tr>
     </thead>
     <tbody>
@@ -70,3 +70,5 @@ $list_student = $data['listStudent'];
         <?php } ?>
     </tbody>
 </table>
+<script type="text/javascript" src="../../web/javascript/Click.js">
+</script>
